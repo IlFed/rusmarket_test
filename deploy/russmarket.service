@@ -1,0 +1,47 @@
+[Unit]
+Description=Russmarket shift scheduler
+After=network.target
+StartLimitIntervalSec=120
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=russmarket
+Group=russmarket
+WorkingDirectory=/opt/russmarket/current
+ExecStart=/opt/russmarket/runtime/bin/node --max-old-space-size=256 server/index.ts
+Environment=NODE_ENV=production
+Environment=HOST=0.0.0.0
+Environment=PORT=8080
+Environment=DATA_DIR=/var/lib/russmarket/postgres
+StateDirectory=russmarket
+StateDirectoryMode=0700
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+KillSignal=SIGTERM
+MemoryHigh=384M
+MemoryMax=512M
+MemorySwapMax=0
+CPUQuota=50%
+CPUWeight=20
+IOWeight=20
+TasksMax=64
+Nice=10
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/var/lib/russmarket
+
+[Install]
+WantedBy=multi-user.target

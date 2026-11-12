@@ -51,6 +51,8 @@ npm audit
 
 ## Production и Docker
 
+Для небольшого VPS доступен [вариант с отдельной systemd-службой на порту 8080](deploy/README.md).
+
 ```sh
 npm run build
 npm start

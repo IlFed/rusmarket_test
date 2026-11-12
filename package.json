@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "concurrently -k -n api,web \"tsx watch server/index.ts\" \"vite --host 127.0.0.1\"",
     "build": "tsc --noEmit && vite build",
-    "start": "tsx server/index.ts",
+    "start": "node server/index.ts",
     "test": "tsx --test tests/*.test.ts",
     "check": "npm run test && npm run build",
     "format": "prettier --write .",
